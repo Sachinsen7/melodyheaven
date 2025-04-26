@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="min-h-screen">
+    <section class="container">
+      <div class="search-container">
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+            stroke="#000000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <input
+          type="text"
+          class="w-full rounded-full px-4 py-2 focus:outline-none"
+          placeholder="Search songs, albums, artists, podcasts"
+        />
+      </div>
+      <nav class="navbar">
+        <div class="left-nav">
+          <div class="hamburger cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 50 50"
+              class="hamburger-icon"
+            >
+              <path
+                d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="right-nav">
+          <svg
+            width="24px"
+            height="24px"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#fff"
+          >
+            <path d="M16,360h0v64H80A64,64,0,0,0,16,360Z" class="ci-primary" />
+            <path
+              fill="#fff"
+              d="M472,80H40a24.028,24.028,0,0,0-24,24v72H48V112H464V392H264v32H472a24.028,24.028,0,0,0,24-24V104A24.028,24.028,0,0,0,472,80Z"
+              class="ci-primary"
+            />
+            <path
+              fill="#fff"
+              d="M16,216v32c97.047,0,176,78.953,176,176h32C224,309.309,130.691,216,16,216Z"
+              class="ci-primary"
+            />
+            <path
+              fill="#fff"
+              d="M16,288v32A104.118,104.118,0,0,1,120,424h32C152,349.009,90.991,288,16,288Z"
+              class="ci-primary"
+            />
+          </svg>
+          <svg
+            width="24px"
+            height="24px"
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#fff"
+            class="bi bi-three-dots-vertical"
+          >
+            <path
+              d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+            />
+          </svg>
+          <button>
+            <a style="text-decoration: none; color: black" href="./sign.html"
+              >Sign in</a
+            >
+          </button>
+          <a class="enableMenu">
+            <svg
+              width="24px"
+              height="24px"
+              fill="#fff"
+              viewBox="0 0 35 35"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18.44,34.68a18.22,18.22,0,0,1-2.94-.24,18.18,18.18,0,0,1-15-20.86A18.06,18.06,0,0,1,9.59.63,2.42,2.42,0,0,1,12.2.79a2.39,2.39,0,0,1,1,2.41L11.9,3.1l1.23.22A15.66,15.66,0,0,0,23.34,21h0a15.82,15.82,0,0,0,8.47.53A2.44,2.44,0,0,1,34.47,25,18.18,18.18,0,0,1,18.44,34.68ZM10.67,2.89a15.67,15.67,0,0,0-5,22.77A15.66,15.66,0,0,0,32.18,24a18.49,18.49,0,0,1-9.65-.64A18.18,18.18,0,0,1,10.67,2.89Z"
+              />
+            </svg>
+          </a>
+
+          <div class="dynamicToggleMenu hidden">
+            <div class="icons" data-theme="light">
+              <svg
+                width="20px"
+                height="20px"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 12c0 2.8 2.2 5 5 5s5-2.2 5-5-2.2-5-5-5-5 2.2-5 5zm5-3c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zm1-4V3c0-.6-.4-1-1-1s-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1zm6.1-.1c-.4-.4-1-.4-1.4 0l-1.4 1.4c-.4.4-.4 1 0 1.4.2.2.5.3.7.3s.5-.1.7-.3l1.4-1.4c.4-.3.4-1 0-1.4zM21 11h-2c-.6 0-1 .4-1 1s.4 1 1 1h2c.6 0 1-.4 1-1s-.4-1-1-1zm-3.3 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l1.4 1.4c.2.2.5.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4l-1.4-1.4zM11 19v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1s-1 .4-1 1zm-6.1.1c.2.2.5.3.7.3s.5-.1.7-.3l1.4-1.4c.4-.4.4-1 0-1.4s-1-.4-1.4 0l-1.4 1.4c-.4.3-.4 1 0 1.4zM2 12c0 .6.4 1 1 1h2c.6 0 1-.4 1-1s-.4-1-1-1H3c-.6 0-1 .4-1 1zm4.3-7.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l1.4 1.4c.2.3.5.4.8.4s.5-.1.7-.3c.4-.4.4-1 0-1.4L6.3 4.9z"
+                ></path>
+              </svg>
+              <p>Light</p>
+            </div>
+            <div class="icons" data-theme="dark">
+              <svg
+                width="20px"
+                height="20px"
+                viewBox="0 0 35 35"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.44,34.68a18.22,18.22,0,0,1-2.94-.24,18.18,18.18,0,0,1-15-20.86A18.06,18.06,0,0,1,9.59.63,2.42,2.42,0,0,1,12.2.79a2.39,2.39,0,0,1,1,2.41L11.9,3.1l1.23.22A15.66,15.66,0,0,0,23.34,21h0a15.82,15.82,0,0,0,8.47.53A2.44,2.44,0,0,1,34.47,25,18.18,18.18,0,0,1,18.44,34.68ZM10.67,2.89a15.67,15.67,0,0,0-5,22.77A15.66,15.66,0,0,0,32.18,24a18.49,18.49,0,0,1-9.65-.64A18.18,18.18,0,0,1,10.67,2.89Z"
+                />
+              </svg>
+              <p>Dark</p>
+            </div>
+            <div class="icons" data-theme="system">
+              <svg
+                width="20px"
+                height="20px"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M544 768v128h192a32 32 0 1 1 0 64H288a32 32 0 1 1 0-64h192V768H192A128 128 0 0 1 64 640V256a128 128 0 0 1 128-128h640a128 128 0 0 1 128 128v384a128 128 0 0 1-128 128H544zM192 192a64 64 0 0 0-64 64v384a64 64 0 0 0 64 64h640a64 64 0 0 0 64-64V256a64 64 0 0 0-64-64H192z"
+                />
+              </svg>
+              <p>System</p>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <section class="sticky-sec">
+        <nav class="sticky-nav">
+          <div id="img-container">
+            <svg
+              width="24px"
+              height="24px"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 576 512"
+            >
+              <path
+                d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"
+              />
+            </svg>
+            <p>
+              <a href="./index.html">Home</a>
+            </p>
+          </div>
+          <div id="img-container">
+            <svg
+              width="24px"
+              height="24px"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9-15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
+              />
+            </svg>
+            <p>Explore</p>
+          </div>
+          <div id="img-container">
+            <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 39.198 39.198"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M36.513,0L13.838,3.688C11.351,4.09,9.336,6.461,9.336,8.979v16.916
+                c-3.674,0-6.651,2.979-6.651,6.652s2.978,6.651,6.651,6.651c3.674,0,6.652-2.979,6.652-6.651c0-0.331-0.002-0.649-0.049-0.966
+                V12.544l13.923-2.566v11.546c-3.674,0-6.652,2.978-6.652,6.65c0,3.675,2.978,6.653,6.652,6.653s6.651-2.979,6.651-6.653
+                c0-0.327,0-0.948,0-0.948S36.513,0,36.513,0z"
+              />
+            </svg>
+            <p>
+              <a href="./library.html">Library</a>
+            </p>
+          </div>
+          <div id="img-container">
+            <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                opacity="0.4"
+                d="M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z"
+              />
+              <path
+                d="M17.0809 14.1499C14.2909 12.2899 9.74094 12.2899 6.93094 14.1499C5.66094 14.9999 4.96094 16.1499 4.96094 17.3799C4.96094 18.6099 5.66094 19.7499 6.92094 20.5899C8.32094 21.5299 10.1609 21.9999 12.0009 21.9999C13.8409 21.9999 15.6809 21.5299 17.0809 20.5899C18.3409 19.7399 19.0409 18.5999 19.0409 17.3599C19.0309 16.1299 18.3409 14.9899 17.0809 14.1499Z"
+              />
+            </svg>
+            <p>
+              <a href="./sign.html">Sign in</a>
+            </p>
+          </div>
+        </nav>
+      </section>
+
+      <section class="explore-content">
+        <!-- Featured Playlists Section -->
+        <div class="featured-playlists">
+          <h2 class="section-title">Featured Playlists</h2>
+          <div class="playlist-grid">
+            <div class="playlist-card editor-pick">
+              <div class="playlist-image">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <h3>Editor's Pick</h3>
+              <p>Curated selection of this week's best tracks</p>
+            </div>
+            <div class="playlist-card">
+              <div class="playlist-image">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <h3>Top Hits</h3>
+              <p>Today's most popular tracks</p>
+            </div>
+            <div class="playlist-card">
+              <div class="playlist-image">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <h3>Mood Boosters</h3>
+              <p>Energetic tracks to lift your spirits</p>
+            </div>
+            <div class="playlist-card">
+              <div class="playlist-image">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <h3>Genre Spotlight</h3>
+              <p>Discover new sounds in your favorite genres</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trending Tracks Section -->
+        <div class="trending-tracks">
+          <h2 class="section-title">Trending Now</h2>
+          <div class="tracks-grid">
+            <div class="track-card">
+              <div class="track-image">
+                <img
+                  src="./assets/podcasts/Trending-Now-English-2021-20240209080244-500x500.jpg"
+                  alt="Album Art"
+                />
+                <span class="rank">#1</span>
+              </div>
+              <div class="track-info">
+                <h4>Summer Vibes</h4>
+                <p>Artist X</p>
+              </div>
+              <button class="play-btn">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M8 5v14l11-7z" fill="currentColor" />
+                </svg>
+              </button>
+            </div>
+            <!-- Add more track cards here -->
+          </div>
+        </div>
+
+        <!-- New Releases Section -->
+        <div class="new-releases">
+          <h2 class="section-title">New Releases</h2>
+          <div class="releases-grid">
+            <div class="release-card">
+              <div class="release-image">
+                <img
+                  src="./assets/podcasts/new releases.jpeg"
+                  alt="Album Art"
+                />
+                <span class="new-badge">New</span>
+              </div>
+              <h4>The Tortured Poets Department</h4>
+              <p>Taylor Swift</p>
+            </div>
+            <!-- Add more release cards here -->
+          </div>
+        </div>
+
+        <!-- Genres & Moods Section -->
+        <div class="genres-moods">
+          <h2 class="section-title">Genres & Moods</h2>
+          <div class="genres-grid">
+            <div
+              class="genre-card"
+              style="background: linear-gradient(45deg, #ff6b6b, #ff8e8e)"
+            >
+              <h3>Pop</h3>
+            </div>
+            <div
+              class="genre-card"
+              style="background: linear-gradient(45deg, #4ecdc4, #45b7af)"
+            >
+              <h3>Hip-Hop</h3>
+            </div>
+            <div
+              class="genre-card"
+              style="background: linear-gradient(45deg, #6c5ce7, #a8a4e6)"
+            >
+              <h3>Chill</h3>
+            </div>
+            <div
+              class="genre-card"
+              style="background: linear-gradient(45deg, #ffd166, #ffb347)"
+            >
+              <h3>Workout</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Curated Picks Section -->
+        <div class="curated-picks">
+          <h2 class="section-title">Recommended for You</h2>
+          <div class="picks-grid">
+            <div class="pick-card">
+              <div class="pick-image">
+                <img
+                  src="./assets/library/Wrapped-2022-Your-Listening-Personality_72ppi.png"
+                  alt="Playlist Art"
+                />
+              </div>
+              <h4>Based on your listening</h4>
+              <p>Personalized playlist</p>
+            </div>
+            <!-- Add more pick cards here -->
+          </div>
+        </div>
+
+        <!-- Live Radio Section -->
+        <div class="live-radio">
+          <h2 class="section-title">Live Radio</h2>
+          <div class="radio-grid">
+            <div class="radio-card">
+              <div class="radio-image">
+                <img src="./assets/library/radio.jpg" alt="Radio Station" />
+                <div class="live-badge">LIVE</div>
+              </div>
+              <h4>Top 40 Radio</h4>
+              <p>Playing the hottest tracks now</p>
+            </div>
+            <!-- Add more radio cards here -->
+          </div>
+        </div>
+      </section>
+    </section>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("DOM Content Loaded");
+      const enableMenuButtons = document.querySelector(".enableMenu");
+      const dynamicToggleMenu = document.querySelector(".dynamicToggleMenu");
+      const icons = document.querySelectorAll(".icons");
+      console.log("Elements found:", {
+        enableMenuButtons,
+        dynamicToggleMenu,
+        icons,
+      });
+
+      // Only add event listener if viewMoreButton exists
+      const viewMoreButton = document.querySelector(".view-more");
+      const hiddenSoundtracksGrid = document.querySelector(
+        ".soundtrack-grid.hidden"
+      );
+
+      if (viewMoreButton && hiddenSoundtracksGrid) {
+        viewMoreButton.addEventListener("click", () => {
+          hiddenSoundtracksGrid.classList.toggle("hidden");
+          viewMoreButton.textContent = hiddenSoundtracksGrid.classList.contains(
+            "hidden"
+          )
+            ? "View More Soundtracks"
+            : "View Less Soundtracks";
+        });
+      }
+
+      // Check for saved theme in localStorage or system preference
+      const savedTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      let initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+      console.log("Initial theme settings:", {
+        savedTheme,
+        systemPrefersDark,
+        initialTheme,
+      });
+
+      // Apply initial theme
+      if (
+        initialTheme === "dark" ||
+        (initialTheme === "system" && systemPrefersDark)
+      ) {
+        document.body.classList.add("dark-mode");
+        console.log("Applied initial dark mode");
+      }
+
+      // Toggle menu visibility
+      if (enableMenuButtons && dynamicToggleMenu) {
+        enableMenuButtons.addEventListener("click", () => {
+          console.log("Theme menu clicked");
+          dynamicToggleMenu.classList.toggle("hidden");
+          dynamicToggleMenu.classList.toggle("show");
+        });
+      }
+
+      // Theme selection
+      if (icons && icons.length > 0) {
+        icons.forEach((icon) => {
+          icon.addEventListener("click", () => {
+            const theme = icon.getAttribute("data-theme");
+            console.log("Theme selected:", theme);
+            if (theme === "system") {
+              const prefersDark = window.matchMedia(
+                "(prefers-color-scheme: dark)"
+              ).matches;
+              document.body.classList.toggle("dark-mode", prefersDark);
+              localStorage.setItem("theme", "system");
+            } else {
+              document.body.classList.remove("dark-mode");
+              if (theme === "dark") {
+                document.body.classList.add("dark-mode");
+              }
+              localStorage.setItem("theme", theme);
+            }
+            if (dynamicToggleMenu) {
+              dynamicToggleMenu.classList.add("hidden");
+              dynamicToggleMenu.classList.remove("show");
+            }
+          });
+        });
+      }
+
+      // Listen for system theme changes
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (e) => {
+          console.log("System theme changed:", e.matches);
+          if (localStorage.getItem("theme") === "system") {
+            document.body.classList.toggle("dark-mode", e.matches);
+          }
+        });
+    });
+  </script>
+</html>

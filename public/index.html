@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; 
+               script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; 
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+               font-src 'self' https://fonts.gstatic.com; 
+               img-src 'self' data: https://i.scdn.co; 
+               connect-src 'self' https://accounts.spotify.com https://api.spotify.com;"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; ..."
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://sdk.scdn.co; default-src 'self'; img-src 'self' https://i.scdn.co; media-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.spotify.com"
+    />
+    <title>Music Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="./styles.css" rel="stylesheet" />
+    <!-- CSS -->
+  </head>
+  <body class="min-h-screen">
+    <section class="container">
+      <!-- Floating Search Bar -->
+      <div class="search-container">
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+            stroke="#000000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <input
+          type="text"
+          class="w-full rounded-full px-4 py-2 focus:outline-none"
+          placeholder="Search songs, albums, artists, podcasts"
+        />
+      </div>
+
+      <!-- Circular Floating Navbar (Bottom-Right) -->
+      <nav class="navbar">
+        <div class="left-nav">
+          <div class="hamburger cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 50 50"
+              class="hamburger-icon"
+            >
+              <path
+                d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="right-nav">
+          <svg
+            width="24px"
+            height="24px"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#fff"
+          >
+            <path d="M16,360h0v64H80A64,64,0,0,0,16,360Z" class="ci-primary" />
+            <path
+              fill="#fff"
+              d="M472,80H40a24.028,24.028,0,0,0-24,24v72H48V112H464V392H264v32H472a24.028,24.028,0,0,0,24-24V104A24.028,24.028,0,0,0,472,80Z"
+              class="ci-primary"
+            />
+            <path
+              fill="#fff"
+              d="M16,216v32c97.047,0,176,78.953,176,176h32C224,309.309,130.691,216,16,216Z"
+              class="ci-primary"
+            />
+            <path
+              fill="#fff"
+              d="M16,288v32A104.118,104.118,0,0,1,120,424h32C152,349.009,90.991,288,16,288Z"
+              class="ci-primary"
+            />
+          </svg>
+          <svg
+            width="24px"
+            height="24px"
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#fff"
+            class="bi bi-three-dots-vertical"
+          >
+            <path
+              d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+            />
+          </svg>
+          <button>
+            <a style="text-decoration: none; color: black" href="./sign.html"
+              >Sign in</a
+            >
+          </button>
+          <a class="enableMenu">
+            <svg
+              width="24px"
+              height="24px"
+              fill="#fff"
+              viewBox="0 0 35 35"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18.44,34.68a18.22,18.22,0,0,1-2.94-.24,18.18,18.18,0,0,1-15-20.86A18.06,18.06,0,0,1,9.59.63,2.42,2.42,0,0,1,12.2.79a2.39,2.39,0,0,1,1,2.41L11.9,3.1l1.23.22A15.66,15.66,0,0,0,23.34,21h0a15.82,15.82,0,0,0,8.47.53A2.44,2.44,0,0,1,34.47,25,18.18,18.18,0,0,1,18.44,34.68ZM10.67,2.89a15.67,15.67,0,0,0-5,22.77A15.66,15.66,0,0,0,32.18,24a18.49,18.49,0,0,1-9.65-.64A18.18,18.18,0,0,1,10.67,2.89Z"
+              />
+            </svg>
+          </a>
+
+          <div class="dynamicToggleMenu hidden">
+            <div class="icons" data-theme="light">
+              <svg
+                width="20px"
+                height="20px"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 12c0 2.8 2.2 5 5 5s5-2.2 5-5-2.2-5-5-5-5 2.2-5 5zm5-3c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zm1-4V3c0-.6-.4-1-1-1s-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1zm6.1-.1c-.4-.4-1-.4-1.4 0l-1.4 1.4c-.4.4-.4 1 0 1.4.2.2.5.3.7.3s.5-.1.7-.3l1.4-1.4c.4-.3.4-1 0-1.4zM21 11h-2c-.6 0-1 .4-1 1s.4 1 1 1h2c.6 0 1-.4 1-1s-.4-1-1-1zm-3.3 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l1.4 1.4c.2.2.5.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4l-1.4-1.4zM11 19v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1s-1 .4-1 1zm-6.1.1c.2.2.5.3.7.3s.5-.1.7-.3l1.4-1.4c.4-.4.4-1 0-1.4s-1-.4-1.4 0l-1.4 1.4c-.4.3-.4 1 0 1.4zM2 12c0 .6.4 1 1 1h2c.6 0 1-.4 1-1s-.4-1-1-1H3c-.6 0-1 .4-1 1zm4.3-7.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l1.4 1.4c.2.3.5.4.8.4s.5-.1.7-.3c.4-.4.4-1 0-1.4L6.3 4.9z"
+                ></path>
+              </svg>
+              <p>Light</p>
+            </div>
+            <div class="icons" data-theme="dark">
+              <svg
+                width="20px"
+                height="20px"
+                viewBox="0 0 35 35"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.44,34.68a18.22,18.22,0,0,1-2.94-.24,18.18,18.18,0,0,1-15-20.86A18.06,18.06,0,0,1,9.59.63,2.42,2.42,0,0,1,12.2.79a2.39,2.39,0,0,1,1,2.41L11.9,3.1l1.23.22A15.66,15.66,0,0,0,23.34,21h0a15.82,15.82,0,0,0,8.47.53A2.44,2.44,0,0,1,34.47,25,18.18,18.18,0,0,1,18.44,34.68ZM10.67,2.89a15.67,15.67,0,0,0-5,22.77A15.66,15.66,0,0,0,32.18,24a18.49,18.49,0,0,1-9.65-.64A18.18,18.18,0,0,1,10.67,2.89Z"
+                />
+              </svg>
+              <p>Dark</p>
+            </div>
+            <div class="icons" data-theme="system">
+              <svg
+                width="20px"
+                height="20px"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M544 768v128h192a32 32 0 1 1 0 64H288a32 32 0 1 1 0-64h192V768H192A128 128 0 0 1 64 640V256a128 128 0 0 1 128-128h640a128 128 0 0 1 128 128v384a128 128 0 0 1-128 128H544zM192 192a64 64 0 0 0-64 64v384a64 64 0 0 0 64 64h640a64 64 0 0 0 64-64V256a64 64 0 0 0-64-64H192z"
+                />
+              </svg>
+              <p>System</p>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Top Navigation Bar (Repurposed sticky-sec) -->
+      <section class="sticky-sec">
+        <nav class="sticky-nav">
+          <div id="img-container">
+            <svg
+              width="24px"
+              height="24px"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 576 512"
+            >
+              <path
+                d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"
+              />
+            </svg>
+            <p>
+              <a href="./index.html">Home</a>
+            </p>
+          </div>
+          <div id="img-container">
+            <svg
+              width="24px"
+              height="24px"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9-15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
+              />
+            </svg>
+            <p>
+              <a href="./explore.html">Explore</a>
+            </p>
+          </div>
+          <div id="img-container">
+            <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 39.198 39.198"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M36.513,0L13.838,3.688C11.351,4.09,9.336,6.461,9.336,8.979v16.916
+                c-3.674,0-6.651,2.979-6.651,6.652s2.978,6.651,6.651,6.651c3.674,0,6.652-2.979,6.652-6.651c0-0.331-0.002-0.649-0.049-0.966
+                V12.544l13.923-2.566v11.546c-3.674,0-6.652,2.978-6.652,6.65c0,3.675,2.978,6.653,6.652,6.653s6.651-2.979,6.651-6.653
+                c0-0.327,0-0.948,0-0.948S36.513,0,36.513,0z"
+              />
+            </svg>
+            <p>
+              <a href="./library.html">Library</a>
+            </p>
+          </div>
+          <div id="img-container">
+            <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                opacity="0.4"
+                d="M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z"
+              />
+              <path
+                d="M17.0809 14.1499C14.2909 12.2899 9.74094 12.2899 6.93094 14.1499C5.66094 14.9999 4.96094 16.1499 4.96094 17.3799C4.96094 18.6099 5.66094 19.7499 6.92094 20.5899C8.32094 21.5299 10.1609 21.9999 12.0009 21.9999C13.8409 21.9999 15.6809 21.5299 17.0809 20.5899C18.3409 19.7399 19.0409 18.5999 19.0409 17.3599C19.0309 16.1299 18.3409 14.9899 17.0809 14.1499Z"
+              />
+            </svg>
+            <p>
+              <a href="./sign.html">Sign in</a>
+            </p>
+          </div>
+        </nav>
+      </section>
+
+      <div class="header-conatiner">
+        <h1>My Spotify Playlists</h1>
+        <button id="login-btn">Login</button>
+        <div class="loading" id="loading">Loading...</div>
+        <div class="error" id="error">error</div>
+        <div class="playlist-container" id="playlist-container"></div>
+      </div>
+
+      <section class="mainGridBoxes">
+        <h1>Trending Hits</h1>
+        <div class="top-albums-grid">
+          <div class="album">
+            <img src="./assets/images/artists/ariana_grande.jpg" alt="" />
+            <h1 class="singer-name">Arian Grande</h1>
+            <div class="song-name">
+              <h2>Positions</h2>
+              <p>173.8 million</p>
+            </div>
+            <div class="audio-container" data-audio="song1">
+              <audio
+                data-title="Positions"
+                data-artist="Ariana Grande"
+                data-cover="./assets/images/artists/ariana_grande.jpg"
+              >
+                <source
+                  src="./assets/top-songs/12. positions.mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+          </div>
+          <div class="album">
+            <img
+              src="./assets/images/artists/top artists/Billie ⭐️🎸💥.jpg"
+              alt=""
+            />
+            <h1 class="singer-name">Billie Eilish</h1>
+            <div class="song-name">
+              <h2>Birds Of A Feather</h2>
+              <p>173.8 million</p>
+            </div>
+            <div class="audio-container" data-audio="song2">
+              <audio
+                data-title="Birds Of A Feather"
+                data-artist="Billie Eilish"
+                data-cover="./assets/images/artists/top artists/Billie ⭐️🎸💥.jpg"
+              >
+                <source
+                  src="./assets/top-songs/Billie Eilish - Birds Of A Feather (Official Music Video).mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+          </div>
+          <div class="album">
+            <img
+              src="./assets/images/artists/top artists/Die With A Smile - Bruno Mars 🩵❤️.jpg"
+              alt=""
+            />
+            <h1 class="singer-name">Bruno Mars</h1>
+            <div class="song-name">
+              <h2>Die With A Smile</h2>
+              <p>150 million</p>
+            </div>
+            <div class="audio-container" data-audio="song3">
+              <audio
+                data-title="Die With A Smile"
+                data-artist="Bruno Mars"
+                data-cover="./assets/images/artists/top artists/Die With A Smile - Bruno Mars 🩵❤️.jpg"
+              >
+                <source
+                  src="./assets/top-songs/Lady Gaga, Bruno Mars - Die With A Smile (Official Music Video).mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+          </div>
+          <div class="album">
+            <img
+              src="./assets/images/artists/top artists/_☔︎ ℋℐℳ ˗.jpg"
+              alt=""
+            />
+            <h1 class="singer-name">Kendrick Lamer</h1>
+            <div class="song-name">
+              <h2>Not Like Us</h2>
+              <p>110 million</p>
+            </div>
+            <div class="audio-container" data-audio="song4">
+              <audio
+                data-title="Not Like Us"
+                data-artist="Kendrick Lamer"
+                data-cover="./assets/images/artists/top artists/_☔︎ ℋℐℳ ˗.jpg"
+              >
+                <source
+                  src="./assets/top-songs/Not Like Us.mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+          </div>
+          <div class="album">
+            <img
+              src="./assets/images/artists/top artists/0x1900-000000-80-0-0.jpg"
+              alt=""
+            />
+            <h1 class="singer-name">Sabrina Carpenter</h1>
+            <div class="song-name">
+              <h2>Espresso</h2>
+              <p>76.7 million</p>
+            </div>
+            <div class="audio-container" data-audio="song5">
+              <audio
+                data-title="Espresso"
+                data-artist="Sabrina Carpenter"
+                data-cover="./assets/images/artists/top artists/0x1900-000000-80-0-0.jpg"
+              >
+                <source
+                  src="./assets/top-songs/Sabrina Carpenter - Espresso (Official Video).mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+          </div>
+          <div class="album">
+            <img
+              src="./assets/images/artists/top artists/ac23432083b9a59565c98b92825bc709.1000x1000x1.png"
+              alt=""
+            />
+            <h1 class="singer-name">Rosé $ Bruno Mars</h1>
+            <div class="song-name">
+              <h2>APT</h2>
+              <p>173.8 million</p>
+            </div>
+            <div class="audio-container" data-audio="song6">
+              <audio
+                data-title="APT"
+                data-artist="Rosé $ Bruno Mars"
+                data-cover="./assets/images/artists/top artists/ac23432083b9a59565c98b92825bc709.1000x1000x1.png"
+              >
+                <source
+                  src="./assets/top-songs/ROSÉ & Bruno Mars - APT. (Official Music Video).mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+          </div>
+          <div class="album">
+            <img
+              src="./assets/images/artists/top artists/Gracie_abrams_2020_5_22_2_(cropped).png"
+              alt=""
+            />
+            <h1 class="singer-name">Gracie Abrams</h1>
+            <div class="song-name">
+              <h2>That's So True</h2>
+              <p>50 million</p>
+            </div>
+            <div class="audio-container" data-audio="song7">
+              <audio
+                data-title="That's So True"
+                data-artist="Gracie Abrams"
+                data-cover="./assets/images/artists/top artists/Gracie_abrams_2020_5_22_2_(cropped).png"
+              >
+                <source
+                  src="./assets/top-songs/Gracie Abrams - That’s So True (Official Lyric Video).mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+          </div>
+          <div class="album">
+            <img src="./assets/images/artists/download (6).jpg" alt="" />
+            <h1 class="singer-name">The Weekend</h1>
+            <div class="song-name">
+              <h2>Popular</h2>
+              <p>125 million</p>
+            </div>
+            <div class="audio-container" data-audio="song8">
+              <audio
+                data-title="Popular"
+                data-artist="The Weekend, Madonna, Playboi Carti"
+                data-cover="./assets/images/artists/download (6).jpg"
+              >
+                <source
+                  src="./assets/top-songs/The Weeknd, Madonna, Playboi Carti - Popular (Official Music Video).mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+          </div>
+          <div class="album">
+            <img
+              src="./assets/images/artists/top artists/𝐸𝑑 𝑆𝒉𝑒𝑒𝑟𝑎𝑛 🖤.jpg"
+              alt=""
+            />
+            <h1 class="singer-name">Ed Sheeran</h1>
+            <div class="song-name">
+              <h2>Azizam</h2>
+              <p>79.5 million</p>
+            </div>
+            <div class="audio-container" data-audio="song9">
+              <audio
+                data-title="Azizam"
+                data-artist="Ed Sheeran"
+                data-cover="./assets/images/artists/top artists/𝐸𝑑 𝑆𝒉𝑒𝑒𝑟𝑎𝑛 🖤.jpg"
+              >
+                <source
+                  src="./assets/top-songs/Ed Sheeran - Azizam (Pink Heart Video).mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+          </div>
+          <div class="album">
+            <img
+              src="./assets/images/artists/top artists/𝟏𝟗𝟖𝟗 (𝐓𝐀𝐘𝐋𝐎𝐑'𝐒 𝐕𝐄𝐑𝐒𝐈𝐎𝐍).jpg"
+              alt=""
+            />
+            <h1 class="singer-name">Taylor Swift</h1>
+            <div class="song-name">
+              <h2>Anti-Hero</h2>
+              <p>81.6 million</p>
+            </div>
+            <div class="audio-container" data-audio="song10">
+              <audio
+                src="./assets/top-songs/Taylor Swift - Anti-Hero (Official Music Video).mp3"
+                data-title="Anti-Hero"
+                data-artist="Taylor Swift"
+                data-cover="./assets/images/artists/top artists/𝟏𝟗𝟖𝟗 (𝐓𝐀𝐘𝐋𝐎𝐑'𝐒 𝐕𝐄𝐑𝐒𝐈𝐎𝐍).jpg"
+              >
+                <source
+                  src="./assets/top-songs/Taylor Swift - Anti-Hero (Official Music Video).mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+          </div>
+        </div>
+        <div class="box-grid">
+          <div class="box top-artists">
+            <div class="top-artists-header">
+              <h2>Top Artists</h2>
+              <a href="#" class="view-all">View all</a>
+            </div>
+            <div class="top-artists-grid">
+              <div class="artist-card">
+                <img
+                  src="./assets/images/artists/top artists/Billie ⭐️🎸💥.jpg"
+                  alt="Billie Eilish"
+                />
+                <p>Billie Eilish</p>
+                <span>49.5 million</span>
+              </div>
+              <div class="artist-card">
+                <img
+                  src="./assets/images/artists/ariana_grande.jpg"
+                  alt="Ariana Grande"
+                />
+                <p>Ariana Grande</p>
+                <span>67.5 million</span>
+              </div>
+              <div class="artist-card">
+                <img
+                  src="./assets/images/artists/download (6).jpg"
+                  alt="The Weeknd"
+                />
+                <p>The Weekend</p>
+                <span>64.9 million</span>
+              </div>
+              <div class="artist-card">
+                <img
+                  src="./assets/images/artists/top artists/𝐸𝑑 𝑆𝒉𝑒𝑒𝑟𝑎𝑛 🖤.jpg"
+                  alt="Justin Bieber"
+                />
+                <p>Ed Sheeran</p>
+                <span>67.9 million</span>
+              </div>
+              <div class="artist-card">
+                <img
+                  src="./assets/images/artists/top artists/𝟏𝟗𝟖𝟗 (𝐓𝐀𝐘𝐋𝐎𝐑'𝐒 𝐕𝐄𝐑𝐒𝐈𝐎𝐍).jpg"
+                  alt="Taylor Swift"
+                />
+                <p>Taylor Swift</p>
+                <span>81.6 million</span>
+              </div>
+              <div class="artist-card">
+                <img
+                  src="./assets/images/artists/top artists/Die With A Smile - Bruno Mars 🩵❤️.jpg"
+                  alt="Bruno Mars"
+                />
+                <p>Bruno Mars</p>
+                <span>58.3 million</span>
+              </div>
+              <div class="artist-card">
+                <img
+                  src="./assets/images/artists/top artists/ac23432083b9a59565c98b92825bc709.1000x1000x1.png"
+                  alt="Lady Gaga"
+                />
+                <p>Lady Gaga</p>
+                <span>55.7 million</span>
+              </div>
+              <div class="artist-card">
+                <img
+                  src="./assets/images/artists/top artists/Gracie_abrams_2020_5_22_2_(cropped).png"
+                  alt="Imagine Dragons"
+                />
+                <p>Gracie Abrams</p>
+                <span>53.2 million</span>
+              </div>
+            </div>
+          </div>
+          <div class="box Player">
+            <div class="player-image">
+              <img
+                src="./assets/images/artists/download (6).jpg"
+                alt="Current playing"
+              />
+            </div>
+            <h3>Break my heart aga..</h3>
+            <div class="player-controls">
+              <button class="prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                  <path
+                    d="M267.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29l0-320c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160L64 241 64 96c0-17.7-14.3-32-32-32S0 78.3 0 96L0 416c0 17.7 14.3 32 32 32s32-14.3 32-32l0-145 11.5 9.6 192 160z"
+                  />
+                </svg>
+              </button>
+              <button class="play-btn">
+                <svg
+                  class="play-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 384 512"
+                >
+                  <path
+                    d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80L0 432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
+                  />
+                </svg>
+                <svg
+                  class="pause-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 320 512"
+                >
+                  <path
+                    d="M48 64C21.5 64 0 85.5 0 112L0 400c0 26.5 21.5 48 48 48l32 0c26.5 0 48-21.5 48-48l0-288c0-26.5-21.5-48-48-48L48 64zm192 0c-26.5 0-48 21.5-48 48l0 288c0 26.5 21.5 48 48 48l32 0c26.5 0 48-21.5 48-48l0-288c0-26.5-21.5-48-48-48l-32 0z"
+                  />
+                </svg>
+              </button>
+              <button class="next">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                  <path
+                    d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416L0 96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241l0-145c0-17.7 14.3-32 32-32s32 14.3 32 32l0 320c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-145-11.5 9.6-192 160z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="like-dislike-btn">
+              <button class="like-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                    d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"
+                  />
+                </svg>
+              </button>
+              <button class="dislike-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                    d="M313.4 479.1c26-5.2 42.9-30.5 37.7-56.5l-2.3-11.4c-5.3-26.7-15.1-52.1-28.8-75.2l144 0c26.5 0 48-21.5 48-48c0-18.5-10.5-34.6-25.9-42.6C497 236.6 504 223.1 504 208c0-23.4-16.8-42.9-38.9-47.1c4.4-7.3 6.9-15.8 6.9-24.9c0-21.3-13.9-39.4-33.1-45.6c.7-3.3 1.1 6.8 1.1-10.4c0-26.5-21.5-48-48-48l-97.5 0c-19 0-37.5 5.6-53.3 16.1L202.7 73.8C176 91.6 160 121.6 160 153.7l0 38.3 0 48 0 24.9c0 29.2 13.3 56.7 36 75l7.4 5.9c26.5 21.2 44.6 51 51.2 84.2l2.3 11.4c5.2 26 30.5 42.9 56.5 37.7zM32 384l64 0c17.7 0 32-14.3 32-32l0-224c0-17.7-14.3-32-32-32L32 96C14.3 96 0 110.3 0 128L0 352c0 17.7 14.3 32 32 32z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar">
+                <input
+                  type="range"
+                  id="progress-bar"
+                  min="0"
+                  max="100"
+                  value="40"
+                />
+              </div>
+              <div class="time-info">
+                <span class="current-time">0:00</span>
+                <span class="total-time">0:00</span>
+              </div>
+            </div>
+            <div class="volume-controls">
+              <div class="left-controlls">
+                <svg
+                  class="volume-silder"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 512"
+                >
+                  <path
+                    d="M533.6 32.5C598.5 85.2 640 165.8 640 256s-41.5 170.7-106.4 223.5c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C557.5 398.2 592 331.2 592 256s-34.5-142.2-88.7-186.3c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5zM473.1 107c43.2 35.2 70.9 88.9 70.9 149s-27.7 113.8-70.9 149c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C475.3 341.3 496 301.1 496 256s-20.7-85.3-53.2-111.8c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5zm-60.5 74.5C434.1 199.1 448 225.9 448 256s-13.9 56.9-35.4 74.5c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C393.1 284.4 400 271 400 256s-6.9-28.4-17.7-37.3c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5zM301.1 34.8C312.6 40 320 51.4 320 64l0 384c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352 64 352c-35.3 0-64-28.7-64-64l0-64c0-35.3 28.7-64 64-64l67.8 0L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3z"
+                  />
+                </svg>
+                <svg
+                  class="mute-btn"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 576 512"
+                >
+                  <path
+                    d="M301.1 34.8C312.6 40 320 51.4 320 64l0 384c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352 64 352c-35.3 0-64-28.7-64-64l0-64c0-35.3 28.7-64 64-64l67.8 0L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"
+                  />
+                </svg>
+                <input type="range" id="volume" min="0" max="1" step="0.1" />
+                <span>0%</span>
+              </div>
+              <div class="right-controlls">
+                <svg
+                  class="speaker-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M403.8 34.4c12-5 25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6l0-32-32 0c-30.2 0-58.7-14.2-76.8-38.4L121.6 172.8c-6-8.1-15.5-12.8-25.6-12.8l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c30.2 0 58.7 14.2 76.8 38.4L326.4 339.2c6 8.1 15.5 12.8 25.6 12.8l32 0 0-32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6l0-32 160 0c88.4 0 160-71.6 160-160z"
+                  />
+                </svg>
+                <svg
+                  class="mute-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 576 512"
+                >
+                  <path
+                    d="M301.1 34.8C312.6 40 320 51.4 320 64l0 384c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352 64 352c-35.3 0-64-28.7-64-64l0-64c0-35.3 28.7-64 64-64l67.8 0L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="box genres">
+            <h2>Genres</h2>
+            <div class="genre-tags">
+              <span>Dance Beat</span>
+              <span>Alternative Indie</span>
+              <span>Pop</span>
+              <span>Hip Hop</span>
+              <span>Jazz</span>
+              <span>Rock</span>
+              <span>Classical</span>
+              <span>R&B</span>
+              <span>Electronic</span>
+              <span>Country</span>
+              <span>Metal</span>
+              <span>Folk</span>
+              <span>Blues</span>
+              <span>Reggae</span>
+              <span>Latin</span>
+            </div>
+          </div>
+          <div class="box charts">
+            <h2>Charts</h2>
+            <div class="chart-item">
+              <span class="rank">01</span>
+              <img src="./assets/images/artists/download (6).jpg" alt="Mood" />
+              <div class="song-info">
+                <h4>Mood</h4>
+                <p>24kGoldn ft Iann Dior</p>
+              </div>
+              <span class="duration">2:20</span>
+            </div>
+            <div class="chart-item">
+              <span class="rank">02</span>
+              <img
+                src="./assets/images/artists/top artists/𝐸𝑑 𝑆𝒉𝑒𝑒𝑟𝑎𝑛 🖤.jpg"
+                alt="Holy"
+              />
+              <div class="song-info">
+                <h4>Holy</h4>
+                <p>Justin Bieber ft Chance</p>
+              </div>
+              <span class="duration">3:32</span>
+            </div>
+          </div>
+          <div class="box podcasts">
+            <div class="podcasts-header">
+              <h2>Popular Podcasts</h2>
+              <a href="#" class="view-all">View all</a>
+            </div>
+            <div class="podcasts-grid">
+              <div class="podcast-card">
+                <img src="./assets/podcasts/1200x1200bf-60.jpg" alt="Podcast" />
+                <p>Tech Talk Daily</p>
+                <span>Technology & Innovation</span>
+              </div>
+              <div class="podcast-card">
+                <img src="./assets/podcasts/songstory.jpg" alt="Podcast" />
+                <p>Music Stories</p>
+                <span>Behind the scenes</span>
+              </div>
+              <div class="podcast-card">
+                <img src="./assets/podcasts/yoga.png" alt="Podcast" />
+                <p>Mindful Moments</p>
+                <span>Wellness & Meditation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="soundtracks-section">
+        <div class="soundtracks">
+          <h2>Oscar-Winning Movie Soundtracks</h2>
+          <div class="soundtrack-grid">
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/Oppenheimer.jpeg"
+                alt="Oppenheimer"
+              />
+              <div class="soundtrack-info">
+                <h4>Oppenheimer</h4>
+                <p>Ludwig Göransson, 2023</p>
+              </div>
+            </div>
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/Dune_(2021_film).jpg"
+                alt="Dune"
+              />
+              <div class="soundtrack-info">
+                <h4>Dune</h4>
+                <p>Hans Zimmer, 2021</p>
+              </div>
+            </div>
+
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/interstellar.jpg"
+                alt="Interstellar"
+              />
+              <div class="soundtrack-info">
+                <h4>Interstellar</h4>
+                <p>Hans Zimmer, 2014</p>
+              </div>
+            </div>
+
+            <div class="soundtrack-item">
+              <img src="./assets/movie soundtracks/joker.jpg" alt="Joker" />
+              <div class="soundtrack-info">
+                <h4>Joker</h4>
+                <p>Hildur Guðnadóttir, 2019</p>
+              </div>
+            </div>
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/The Lord of the Rings.jpeg"
+                alt="The Lord of the Rings"
+              />
+              <div class="soundtrack-info">
+                <h4>The Lord of the Rings</h4>
+                <p>Howard Shore, 2001</p>
+              </div>
+            </div>
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/The_Social_Network_film_poster.png"
+                alt="The Social Network"
+              />
+              <div class="soundtrack-info">
+                <h4>The Social Network</h4>
+                <p>Trent Reznor, 2010</p>
+              </div>
+            </div>
+            <div class="soundtrack-item">
+              <img src="./assets/movie soundtracks/Titanic.jpg" alt="Titanic" />
+              <div class="soundtrack-info">
+                <h4>Titanic</h4>
+                <p>James Horner, 1997</p>
+              </div>
+            </div>
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/Up_(2009_film).jpg"
+                alt="Up"
+              />
+              <div class="soundtrack-info">
+                <h4>Up</h4>
+                <p>Michael Giacchino, 2009</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="soundtrack-grid hidden">
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/inception.jpg"
+                alt="Inception"
+              />
+              <div class="soundtrack-info">
+                <h4>Inception</h4>
+                <p>Hans Zimmer, 2010</p>
+              </div>
+            </div>
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/lal la land.jpeg"
+                alt="La La Land"
+              />
+              <div class="soundtrack-info">
+                <h4>La La Land</h4>
+                <p>Justin Hurwitz, 2016</p>
+              </div>
+            </div>
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/gladiator.png"
+                alt="Gladiator"
+              />
+              <div class="soundtrack-info">
+                <h4>Gladiator</h4>
+                <p>Hans Zimmer, 2000</p>
+              </div>
+            </div>
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/pirates.jpg"
+                alt="Pirates of the Caribbean"
+              />
+              <div class="soundtrack-info">
+                <h4>Pirates of the Caribbean</h4>
+                <p>Hans Zimmer, 2003</p>
+              </div>
+            </div>
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/harry-potter.jpg"
+                alt="Harry Potter"
+              />
+              <div class="soundtrack-info">
+                <h4>Harry Potter</h4>
+                <p>John Williams, 2001</p>
+              </div>
+            </div>
+            <div class="soundtrack-item">
+              <img
+                src="./assets/movie soundtracks/jurassic-park.jpg"
+                alt="Jurassic Park"
+              />
+              <div class="soundtrack-info">
+                <h4>Jurassic Park</h4>
+                <p>John Williams, 1993</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="view-more">View More Soundtracks</button>
+        </div>
+      </section>
+
+      <div class="playlist-dialog" id="oppenheimer-dialog">
+        <div class="dialog-content">
+          <div class="dialog-header">
+            <img
+              src="./assets/movie soundtracks/Oppenheimer.jpeg"
+              alt="Oppenheimer"
+            />
+            <div class="dialog-title">
+              <h2>Oppenheimer</h2>
+              <p>Ludwig Göransson, 2023</p>
+            </div>
+            <button class="close-dialog">&times;</button>
+          </div>
+          <div class="playlist-container">
+            <div class="playlist-item">
+              <audio
+                src="./assets/Oppenheimer/Fission(128k).mp3"
+                data-title="Fission"
+                data-artist="Ludwig Göransson"
+                data-cover="./assets/movie soundtracks/Oppenheimer.jpeg"
+              ></audio>
+              <p>Fission</p>
+              <span>0:00</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Oppenheimer/A_Lowly_Shoe_Salesman(128k).mp3"
+                data-title="A Lowly Shoe Salesman"
+                data-artist="Ludwig Göransson"
+                data-cover="./assets/movie soundtracks/Oppenheimer.jpeg"
+              ></audio>
+              <p>A Lowly Shoe Salesman</p>
+              <span>04:20</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Oppenheimer/Can_You_Hear_The_Music(128k).mp3"
+                data-title="Can You Hear The Music"
+                data-artist="Ludwig Göransson"
+                data-cover="./assets/movie soundtracks/Oppenheimer.jpeg"
+              ></audio>
+              <p>Can You Hear The Music</p>
+              <span>05:15</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Oppenheimer/Gravity_Swallows_Light(128k).mp3"
+                data-title="Gravity Swallows Light"
+                data-artist="Ludwig Göransson"
+                data-cover="./assets/movie soundtracks/Oppenheimer.jpeg"
+              ></audio>
+              <p>Gravity Swallows Light</p>
+              <span>06:30</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Oppenheimer/Quantum_Mechanics(128k).mp3"
+                data-title="Quantum Mechanics"
+                data-artist="Ludwig Göransson"
+                data-cover="./assets/movie soundtracks/Oppenheimer.jpeg"
+              ></audio>
+              <p>Quantum Mechanics</p>
+              <span>07:45</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="playlist-dialog" id="dune-dialog">
+        <div class="dialog-content">
+          <div class="dialog-header">
+            <img
+              src="./assets/movie soundtracks/Dune_(2021_film).jpg"
+              alt="Dune"
+            />
+            <div class="dialog-title">
+              <h2>Dune</h2>
+              <p>Hans Zimmer, 2021</p>
+            </div>
+            <button class="close-dialog">&times;</button>
+          </div>
+          <div class="playlist-container">
+            <div class="playlist-item">
+              <audio
+                src="./assets/Dune/Dream_of_Arrakis___Dune_OST(128k).mp3"
+                data-title="Dream of Arrakis"
+                data-artist="Hans Zimmer"
+                data-cover="./assets/movie soundtracks/Dune_(2021_film).jpg"
+              ></audio>
+              <p>Dream of Arrakis</p>
+              <span>02:30</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Dune/Herald_of_the_Change___Dune_OST(128k).mp3"
+                data-title="Herald of the Change"
+                data-artist="Hans Zimmer"
+                data-cover="./assets/movie soundtracks/Dune_(2021_film).jpg"
+              ></audio>
+              <p>Herald of the Change</p>
+              <span>03:45</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Dune/Paul_s_Dream___Dune_OST(128k).mp3"
+                data-title="Paul's Dream"
+                data-artist="Hans Zimmer"
+                data-cover="./assets/movie soundtracks/Dune_(2021_film).jpg"
+              ></audio>
+              <p>Paul's Dream</p>
+              <span>04:15</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Dune/Ripples_in_the_Sand___Dune_OST(128k).mp3"
+                data-title="Ripples in the Sand"
+                data-artist="Hans Zimmer"
+                data-cover="./assets/movie soundtracks/Dune_(2021_film).jpg"
+              ></audio>
+              <p>Ripples in the Sand</p>
+              <span>05:20</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Dune/The_Fall___Dune_OST(128k).mp3"
+                data-title="The Fall"
+                data-artist="Hans Zimmer"
+                data-cover="./assets/movie soundtracks/Dune_(2021_film).jpg"
+              ></audio>
+              <p>The Fall</p>
+              <span>06:20</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="playlist-dialog" id="interstellar-dialog">
+        <div class="dialog-content">
+          <div class="dialog-header">
+            <img
+              src="./assets/movie soundtracks/interstellar.jpg"
+              alt="Interstellar"
+            />
+            <div class="dialog-title">
+              <h2>Interstellar</h2>
+              <p>Hans Zimmer, 2014</p>
+            </div>
+            <button class="close-dialog">&times;</button>
+          </div>
+          <div class="playlist-container">
+            <div class="playlist-item">
+              <audio
+                src="./assets/Intersteller/Day_One__Interstellar_Theme_(128k).mp3"
+                data-title="Day One"
+                data-artist="Hans Zimmer"
+                data-cover="./assets/movie soundtracks/interstellar.jpg"
+              ></audio>
+              <p>Day One</p>
+              <span>02:06</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Intersteller/Dreaming_of_the_Crash(128k).mp3"
+                data-title="Dreaming of the Crash"
+                data-artist="Hans Zimmer"
+                data-cover="./assets/movie soundtracks/interstellar.jpg"
+              ></audio>
+              <p>Dreaming of the Crash</p>
+              <span>03:55</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Intersteller/Dust(128k).mp3"
+                data-title="Dust"
+                data-artist="Hans Zimmer"
+                data-cover="./assets/movie soundtracks/interstellar.jpg"
+              ></audio>
+              <p>Dust</p>
+              <span>06:52</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Intersteller/Stay(128k).mp3"
+                data-title="Stay"
+                data-artist="Hans Zimmer"
+                data-cover="./assets/movie soundtracks/interstellar.jpg"
+              ></audio>
+              <p>Stay</p>
+              <span>04:06</span>
+            </div>
+            <div class="playlist-item">
+              <audio
+                src="./assets/Intersteller/Cornfield_Chase(128k).mp3"
+                data-title="Cornfield Chase"
+                data-artist="Hans Zimmer"
+                data-cover="./assets/movie soundtracks/interstellar.jpg"
+              ></audio>
+              <p>Cornfield Chase</p>
+              <span>04:06</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script type="module" src="./script.js"></script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  </body>
+</html>
