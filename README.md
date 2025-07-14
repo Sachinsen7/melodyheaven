@@ -12,6 +12,11 @@ With a unique user interface, seamless Spotify API integration for Premium users
 <!-- Replace with actual screenshot path -->
 
 ![Screenshots](./public/assets/boxImage/image1.png)
+![Screenshots](./public/assets/boxImage/image2.png)
+![Screenshots](./public/assets/boxImage/image3.png)
+![Screenshots](./public/assets/boxImage/image4.png)
+![Screenshots](./public/assets/boxImage/image5.png)
+![Screenshots](./public/assets/boxImage/image6.png)
 
 
 ## 🚀 Features
