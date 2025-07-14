@@ -40,8 +40,8 @@ With a unique user interface, seamless Spotify API integration for Premium users
 
 ## 🎯 Demo
 
-**Live Demo**: ()
-**Live Demo**: (https://melodyheaven.vercel.app/)
+
+**Live Demo**: [https://melodyheaven.vercel.app/]
 
 ## 🛠️ Installation
 
