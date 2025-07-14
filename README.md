@@ -10,7 +10,9 @@ With a unique user interface, seamless Spotify API integration for Premium users
 ## 📸 Melody Haven Screenshot
 
 <!-- Replace with actual screenshot path -->
-(/assets/boxImage/image1.png)
+
+![Screenshots](/assets/boxImage/image1.png)
+
 
 ## 🚀 Features
 
